@@ -116,7 +116,6 @@ def waitBE_Shutdown():
     for i in range(15):
         try:
             r = requests.get(f"http://{backend_IP}:28100/GetBackendStatus")
-            print(r.json())
             if r.json()["status"] == "Backend_Not_Start":
                 break
         except:

@@ -112,10 +112,11 @@ def changeBEFormat(beFormatObj):
         print("Error exporting backend config, status code:", response.status_code)
 
 def waitBE_Shutdown():
-    logging.info("waitBE_Shutdown")
+    print("waitBE_Shutdown")
     for i in range(15):
         try:
-            r = requests.get("http://{backend_IP}:28100/GetBackendStatus")
+            r = requests.get(f"http://{backend_IP}:28100/GetBackendStatus")
+            print(r.json())
             if r.json()["status"] == "Backend_Not_Start":
                 break
         except:
@@ -181,5 +182,6 @@ if __name__=="__main__":
     #changeBEFormat( backendStandards[0])
     a= getInfomationFromHitomi()
     print(fetchStatusOnBE())
+    waitBE_Shutdown()
     waitBEStartWell()
 
